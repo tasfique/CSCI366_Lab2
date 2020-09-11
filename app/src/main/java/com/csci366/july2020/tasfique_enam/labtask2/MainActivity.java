@@ -15,7 +15,7 @@ import java.io.FileInputStream;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import  java.util.Date;
+import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -40,8 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         userName = findViewById(R.id.editTextUserID);
         password = findViewById(R.id.editTextPassword);
-        button =  findViewById(R.id.button_login);
-        dateTimeDisplay = findViewById(R.id.textViewDate);
+        button = findViewById(R.id.button_login);
 
         mCalendar = Calendar.getInstance();
         mDateFormat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a");
@@ -60,11 +59,11 @@ public class MainActivity extends AppCompatActivity {
                 if (textUserName.matches("") || textPassword.matches("")) {
                     Toast.makeText(MainActivity.this, "User Name or Password is empty.", Toast.LENGTH_SHORT).show();
                     return;
-                } else if (textUserName.matches("spiderman") || textPassword.matches("man12spider")) {
+                } else if (textUserName.matches("spiderman") && textPassword.matches("man12spider")) {
 
                     try {
 
-                        FileOutputStream fOut = openFileOutput(file, MODE_APPEND );
+                        FileOutputStream fOut = openFileOutput(file, MODE_APPEND);
                         fOut.write(date.getBytes()); //filecontents is a string
                         fOut.write(System.getProperty("line.separator").getBytes());
                         fOut.close();
@@ -78,13 +77,14 @@ public class MainActivity extends AppCompatActivity {
 
                     i.putExtra("username", textUserName);
                     i.putExtra("filename", file);
+
                     startActivity(i);
 
-                } else if (textUserName.matches("delta") || textPassword.matches("tadel2")) {
+                } else if (textUserName.matches("delta") && textPassword.matches("atled")) {
 
                     try {
 
-                        FileOutputStream fOut = openFileOutput(file2, MODE_APPEND );
+                        FileOutputStream fOut = openFileOutput(file2, MODE_APPEND);
                         fOut.write(date.getBytes()); //filecontents is a string
                         fOut.write(System.getProperty("line.separator").getBytes());
                         fOut.close();
@@ -96,14 +96,16 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getBaseContext(), "Something went Wrong in writing.", Toast.LENGTH_LONG).show();
                     }
 
-                    i.putExtra("username",textUserName);
-                    i.putExtra("filename", file);
+                    i.putExtra("username", textUserName);
+                    i.putExtra("filename", file2);
+
                     startActivity(i);
 
-                } else if (textUserName.matches("admin") || textPassword.matches("nimda3")) {
+                } else if (textUserName.matches("admin") && textPassword.matches("iamsuper")) {
 
                     try {
-                        FileOutputStream fOut = openFileOutput(file3, MODE_PRIVATE);
+
+                        FileOutputStream fOut = openFileOutput(file3, MODE_APPEND);
                         fOut.write(date.getBytes()); //filecontents is a string
                         fOut.write(System.getProperty("line.separator").getBytes());
                         fOut.close();
@@ -115,7 +117,9 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getBaseContext(), "Something went Wrong in writing.", Toast.LENGTH_LONG).show();
                     }
 
-                    i.putExtra("username",textUserName);
+                    i.putExtra("username", textUserName);
+                    i.putExtra("filename", file3);
+
                     startActivity(i);
 
                 } else {
@@ -124,5 +128,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }
